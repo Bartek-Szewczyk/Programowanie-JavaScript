@@ -22,32 +22,34 @@ for (let index = 0; index < imgs.length; index++) {
 
 const lightbox = document.querySelector('.lightbox');
 
-
-
-let NextEl;
 let imgUrl;
-let img;
+let NextEl;
+let prevEl;
 
 function showLightbox(ev) {
-    const prevEl = ev.target.prevElementSibling;
-    NextEl = ev.target.nextElementSibling.currentSrc;
-
+    prevEl = ev.target.prevElementSibling;
+    NextEl = ev.target.nextElementSibling;
     img = document.querySelector('.lightbox img');
-    console.log(NextEl)
+    console.dir(NextEl)
+    console.dir(img)
     imgUrl = ev.target.src;
     img.src = imgUrl;
     lightbox.classList.add('visible');
 
-    const prev = document.querySelector('.next');
-    prev.addEventListener('click', showNext);
+}
 
-    function showNext(ev) {
-        img = NextEl;
+const next = document.querySelector('.next');
+next.addEventListener('click', showNext);
+
+function showNext(ev) {
+
+    img.src = NextEl.src;
+    const newNext = NextEl.nextElementSibling;
+    console.dir(newNext);
+    NextEl = newNext;
 
 
-        console.log(NextEl);
-    }
-
+    console.log(NextEl);
 }
 
 // const background = document.querySelector('.lightbox')

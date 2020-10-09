@@ -14,7 +14,7 @@
     display: flex;
 }
 
-.lightbox img {
+.lightbox_img {
     max-width: 60%;
     max-height: 100%;
     z-index: 2;
