@@ -11,10 +11,20 @@
 }
 
 .visible {
-    display: block;
+    display: flex;
 }
 
 .lightbox img {
     max-width: 60%;
     max-height: 100%;
+    z-index: 2;
+}
+
+.fas {
+    color: white;
+    position: relative;
+}
+
+.next .next {
+    z-index: 3;
 }
