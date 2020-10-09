@@ -18,12 +18,18 @@ for (let index = 0; index < imgs.length; index++) {
     const img = imgs[index];
     console.log(img);
     img.addEventListener('click', showLightbox)
-    img.addEventListener('onmouseover', brd)
+    img.addEventListener('mouseover', brd)
+    img.addEventListener('mouseout', rbrd)
+
+    function brd() {
+        img.classList.add('border')
+    }
+
+    function rbrd() {
+        img.classList.remove('border')
+    }
 }
 
-function brd() {
-    img.classList.add("border")
-}
 
 const lightboxBackground = document.querySelector('.lightboxBackground');
 const lightbox = document.querySelector('.lightbox')
@@ -31,7 +37,6 @@ const background = document.querySelector('.lightboxBackground')
 
 
 
-background.addEventListener('click', closeBackground)
 
 
 
@@ -71,6 +76,8 @@ function showPrev(ev) {
 }
 
 
+
+background.addEventListener('click', closeBackground)
 
 function closeBackground() {
     lightboxBackground.classList.remove('visible');
