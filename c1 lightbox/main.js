@@ -20,21 +20,25 @@ for (let index = 0; index < imgs.length; index++) {
     img.addEventListener('click', showLightbox)
 }
 
-const lightbox = document.querySelector('.lightbox');
+const lightboxBackground = document.querySelector('.lightboxBackground');
+const lightbox = document.querySelector('.lightbox')
+const background = document.querySelector('.lightboxBackground')
+background.addEventListener('click', closeBackground)
 
-let imgUrl;
+
+
 let NextEl;
 let prevEl;
 
 function showLightbox(ev) {
-    prevEl = ev.target.prevElementSibling;
+    prevEl = ev.target.previousElementSibling;
     NextEl = ev.target.nextElementSibling;
     img = document.querySelector('.lightbox img');
-    console.dir(NextEl)
-    console.dir(img)
-    imgUrl = ev.target.src;
+    const imgUrl = ev.target.src;
     img.src = imgUrl;
+    lightboxBackground.classList.add('visible');
     lightbox.classList.add('visible');
+
 
 }
 
@@ -45,16 +49,26 @@ function showNext(ev) {
 
     img.src = NextEl.src;
     const newNext = NextEl.nextElementSibling;
-    console.dir(newNext);
+    prevEl = NextEl.previousElementSibling;
     NextEl = newNext;
 
-
-    console.log(NextEl);
 }
 
-// const background = document.querySelector('.lightbox')
-// background.addEventListener('click', closeBackground)
+const prev = document.querySelector('.prev');
+prev.addEventListener('click', showPrev);
 
-// function closeBackground() {
-//     lightbox.classList.remove('visible');
-// }
+function showPrev(ev) {
+
+    img.src = prevEl.src;
+    const newPrev = prevEl.previousElementSibling;
+    NextEl = prevEl.nextElementSibling;
+    prevEl = newPrev;
+
+}
+
+
+
+function closeBackground() {
+    lightboxBackground.classList.remove('visible');
+    lightbox.classList.remove('visible')
+}
