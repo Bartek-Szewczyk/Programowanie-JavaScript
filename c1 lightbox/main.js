@@ -16,7 +16,7 @@ const imgs = document.querySelectorAll('.gallery img');
 
 for (let index = 0; index < imgs.length; index++) {
     const img = imgs[index];
-    console.log(img);
+    console.dir(img);
     img.addEventListener('click', showLightbox)
     img.addEventListener('mouseover', brd)
     img.addEventListener('mouseout', rbrd)
@@ -30,26 +30,26 @@ for (let index = 0; index < imgs.length; index++) {
     }
 }
 
-
 const lightboxBackground = document.querySelector('.lightboxBackground');
 const lightbox = document.querySelector('.lightbox')
 const background = document.querySelector('.lightboxBackground')
-
-
-
-
-
-
+inf = document.querySelector('.info');
 let NextEl;
 let prevEl;
+let x;
 
 function showLightbox(ev) {
     prevEl = ev.target.previousElementSibling;
     NextEl = ev.target.nextElementSibling;
     img = document.querySelector('.lightbox img');
+
+
     const imgUrl = ev.target.src;
     console.dir(NextEl)
+    x = ev.target.alt;
     img.src = imgUrl;
+    console.log(x);
+    inf.innerHTML = "obrazek " + x + " z 15";
     lightboxBackground.classList.add('visible');
     lightbox.classList.add('visible');
 }
@@ -59,9 +59,12 @@ next.addEventListener('click', showNext);
 
 function showNext(ev) {
     img.src = NextEl.src;
+    x = NextEl.alt;
+    inf.innerHTML = "obrazek " + x + " z 15";
     const newNext = NextEl.nextElementSibling;
     prevEl = NextEl.previousElementSibling;
     NextEl = newNext;
+    console.dir(NextEl);
 }
 
 const prev = document.querySelector('.prev');
@@ -69,6 +72,8 @@ prev.addEventListener('click', showPrev);
 
 function showPrev(ev) {
     img.src = prevEl.src;
+    x = prevEl.alt;
+    inf.innerHTML = "obrazek " + x + " z 15";
     prev.classList.remove('novisible')
     const newPrev = prevEl.previousElementSibling;
     NextEl = prevEl.nextElementSibling;

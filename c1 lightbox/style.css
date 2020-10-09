@@ -69,3 +69,9 @@
 .next {
     left: -40px
 }
+
+.info {
+    font-size: 20px;
+    color: white;
+    z-index: 3;
+}
