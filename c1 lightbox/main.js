@@ -23,6 +23,7 @@ for (let index = 0; index < imgs.length; index++) {
 const lightboxBackground = document.querySelector('.lightboxBackground');
 const lightbox = document.querySelector('.lightbox')
 const background = document.querySelector('.lightboxBackground')
+
 background.addEventListener('click', closeBackground)
 
 
@@ -35,35 +36,31 @@ function showLightbox(ev) {
     NextEl = ev.target.nextElementSibling;
     img = document.querySelector('.lightbox img');
     const imgUrl = ev.target.src;
+    console.dir(NextEl)
     img.src = imgUrl;
     lightboxBackground.classList.add('visible');
     lightbox.classList.add('visible');
-
-
 }
 
 const next = document.querySelector('.next');
 next.addEventListener('click', showNext);
 
 function showNext(ev) {
-
     img.src = NextEl.src;
     const newNext = NextEl.nextElementSibling;
     prevEl = NextEl.previousElementSibling;
     NextEl = newNext;
-
 }
 
 const prev = document.querySelector('.prev');
 prev.addEventListener('click', showPrev);
 
 function showPrev(ev) {
-
     img.src = prevEl.src;
+    prev.classList.remove('novisible')
     const newPrev = prevEl.previousElementSibling;
     NextEl = prevEl.nextElementSibling;
     prevEl = newPrev;
-
 }
 
 
