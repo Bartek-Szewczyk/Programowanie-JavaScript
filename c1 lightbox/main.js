@@ -18,11 +18,18 @@ for (let index = 0; index < imgs.length; index++) {
     const img = imgs[index];
     console.log(img);
     img.addEventListener('click', showLightbox)
+    img.addEventListener('onmouseover', brd)
+}
+
+function brd() {
+    img.classList.add("border")
 }
 
 const lightboxBackground = document.querySelector('.lightboxBackground');
 const lightbox = document.querySelector('.lightbox')
 const background = document.querySelector('.lightboxBackground')
+
+
 
 background.addEventListener('click', closeBackground)
 
