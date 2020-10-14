@@ -78,6 +78,7 @@ function showPrev(ev) {
     const newPrev = prevEl.previousElementSibling;
     NextEl = prevEl.nextElementSibling;
     prevEl = newPrev;
+
 }
 
 
