@@ -10,6 +10,7 @@ function onKeyPress(ev) {
         case "KeyA":
             soundName = "boom";
             sound = document.querySelector("#boom");
+
             break;
         case "KeyS":
             soundName = "clap";
@@ -53,6 +54,7 @@ function onKeyPress(ev) {
         }
         channel.push(recordedSound);
         sound.play();
+        drum(soundName)
     }
 }
 
@@ -70,4 +72,12 @@ function playChannel() {
 function playSound(soundName) {
     const sound = document.querySelector('#' + soundName)
     sound.play();
+}
+
+function drum(soundName) {
+    const img = document.querySelector('.' + soundName)
+    img.classList.add('animation-scale')
+    setTimeout(() => {
+        img.classList.remove('animation-scale')
+    }, 1000)
 }
