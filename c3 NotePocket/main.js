@@ -1,6 +1,5 @@
 const localStorageNoteKey = 'notes';
 let notes = [];
-
 document.querySelector('#noteAdd').addEventListener('click', onNewNote)
 document.querySelector('#createNote').addEventListener('click', visible)
 const newNote = document.querySelector('#createNewNote');
@@ -15,7 +14,8 @@ function noVisible() {
 }
 
 function onNewNote() {
-    const title = document.querySelector('#noteTitle').value;
+
+    let title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
     console.log(title, content);
 
@@ -37,6 +37,9 @@ function onNewNote() {
 
     noVisible();
     addHtml();
+    title = " ";
+    content.value = " ";
+
 }
 
 // // zmiana html z poziomu js sposob brutalny 
@@ -113,6 +116,7 @@ function removeNote() {
         notes.splice(i, 1)
     }
 
+    console.dir(this);
 
     localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
 
