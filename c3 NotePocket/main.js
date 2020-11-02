@@ -55,6 +55,8 @@ function onNewNote() {
 
 // }
 
+
+
 function addHtml() {
 
     //odczytanie tablicy notatek 
@@ -63,7 +65,7 @@ function addHtml() {
         note.createDate = new Date(note.createDate);
         return note;
     })
-
+    let rem = 0;
     const main = document.querySelector('main');
     main.innerHTML = '';
     // zmiana html-a z poziomu js-a - sposób obiektowy
@@ -80,7 +82,7 @@ function addHtml() {
         htmlContent.innerHTML = note.content;
         htmlDate.innerHTML = note.createDate.toLocaleString();
         htmlBtn.innerHTML = 'Remove';
-        htmlBtn.classList.add('forRemove')
+        htmlBtn.classList.add(`forRemove${rem}`)
 
         htmlSection.appendChild(htmlTitle);
         htmlSection.appendChild(htmlContent);
@@ -89,11 +91,13 @@ function addHtml() {
 
 
         main.appendChild(htmlSection);
+
+        document.querySelector(`.forRemove${rem}`).addEventListener('click', removeNote);
+
+        rem++;
     }
 
-    document.querySelector('.forRemove').addEventListener('click', removeNote)
 }
-
 addHtml();
 
 function removeNote() {
@@ -101,6 +105,16 @@ function removeNote() {
     notes = notesFromStorage.map(note => {
         note.createDate = new Date(note.createDate);
         return note;
-    });
+    })
 
+    const i = notes.findIndex(note => note.title === this.parentElement.firstChild.textContent)
+
+    if (i !== -1) {
+        notes.splice(i, 1)
+    }
+
+
+    localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
+
+    addHtml();
 }
