@@ -11,11 +11,14 @@ function visible() {
 
 function noVisible() {
     newNote.classList.remove('visible');
+    clearNew()
 }
+
+document.querySelector('.closeBtn').addEventListener('click', noVisible)
 
 function onNewNote() {
 
-    let title = document.querySelector('#noteTitle').value;
+    const title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
     console.log(title, content);
 
@@ -37,11 +40,14 @@ function onNewNote() {
 
     noVisible();
     addHtml();
-    title = " ";
-    content.value = " ";
 
+    clearNew()
 }
 
+function clearNew() {
+    document.querySelector("#noteTitle").value = "";
+    document.querySelector("#noteContent").value = "";
+}
 // // zmiana html z poziomu js sposob brutalny 
 // for (let note of notes) {
 
@@ -86,6 +92,7 @@ function addHtml() {
         htmlDate.innerHTML = note.createDate.toLocaleString();
         htmlBtn.innerHTML = 'Remove';
         htmlBtn.classList.add(`forRemove${rem}`)
+
 
         htmlSection.appendChild(htmlTitle);
         htmlSection.appendChild(htmlContent);
