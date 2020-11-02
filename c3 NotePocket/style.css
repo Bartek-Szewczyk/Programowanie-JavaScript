@@ -1,0 +1,34 @@
+.noVisible {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.createNote {
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.allNote {
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: skyblue;
+}
+
+.note {
+    background-color: silver;
+    display: block;
+    width: 10%;
+    margin: 10px;
+    text-align: center;
+}
