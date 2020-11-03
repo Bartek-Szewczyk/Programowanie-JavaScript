@@ -82,8 +82,10 @@ function clearNew() {
     pin = false;
     const colourPin = document.querySelector('#pin');
     colourPin.classList.remove('colPin')
-
+    icon();
 }
+
+
 
 
 
@@ -107,8 +109,10 @@ function addHtml() {
         const htmlTitle = document.createElement('h1');
         const htmlContent = document.createElement('p');
         const htmlDate = document.createElement('h4');
+        const htmlDivIcon = document.createElement('div')
         const htmlBtn = document.createElement('i');
-        const htmlPin = document.createElement('i')
+        const htmlPin = document.createElement('i');
+        const htmlEdit = document.createElement('i');
 
 
         htmlSection.classList.add('note', `${note.colour}`);
@@ -116,7 +120,10 @@ function addHtml() {
         htmlContent.innerHTML = note.content;
         htmlDate.innerHTML = note.createDate.toLocaleString();
         htmlBtn.classList.add('fas', 'fa-trash-alt', `forRemove${rem}`);
-        htmlPin.classList.add('fas', 'fa-thumbtack', 'existPin', `forPin${rem}`)
+        htmlPin.classList.add('fas', 'fa-thumbtack', 'existPin', `forPin${rem}`);
+        htmlDivIcon.classList.add('icon', 'noVisible');
+        htmlEdit.classList.add('far', 'fa-edit', `forEdit${rem}`)
+
 
 
         htmlSection.appendChild(htmlTitle);
@@ -124,6 +131,12 @@ function addHtml() {
         htmlSection.appendChild(htmlDate);
         htmlSection.appendChild(htmlBtn);
         htmlSection.appendChild(htmlPin);
+        htmlSection.appendChild(htmlDivIcon);
+        htmlSection.appendChild(htmlEdit);
+        htmlDivIcon.appendChild(htmlBtn);
+        htmlDivIcon.appendChild(htmlPin);
+        htmlDivIcon.appendChild(htmlEdit);
+
         console.dir(htmlSection);
         switch (note.pinned) {
             case false:
@@ -142,6 +155,8 @@ function addHtml() {
 
         document.querySelector(`.forRemove${rem}`).addEventListener('click', removeNote);
         document.querySelector(`.forPin${rem}`).addEventListener('click', ePinned);
+        document.querySelector(`.forEdit${rem}`).addEventListener('click', edit);
+        document.querySelector(`.forEdit${rem}`).addEventListener('click', removeNote);
         rem++;
     }
 
@@ -155,7 +170,7 @@ function removeNote() {
         return note;
     })
 
-    const i = notes.findIndex(note => note.title === this.parentElement.firstChild.textContent)
+    const i = notes.findIndex(note => note.title === this.parentElement.parentElement.firstChild.textContent)
 
     if (i !== -1) {
         notes.splice(i, 1)
@@ -166,6 +181,7 @@ function removeNote() {
     localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
 
     addHtml();
+    icon();
 }
 
 function ePinned() {
@@ -174,7 +190,8 @@ function ePinned() {
         note.createDate = new Date(note.createDate);
         return note;
     })
-    const i = notes.findIndex(note => note.title === this.parentElement.firstChild.textContent);
+    console.dir(this)
+    const i = notes.findIndex(note => note.title === this.parentElement.parentElement.firstChild.textContent);
 
     const editnote = notes[i];
     if (editnote.pinned === false) {
@@ -189,9 +206,67 @@ function ePinned() {
     localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
 
     addHtml();
+    icon();
 }
 
 
+function edit() {
+
+    visible();
+    const notesFromStorage = JSON.parse(localStorage.getItem(localStorageNoteKey));
+    notes = notesFromStorage.map(note => {
+        note.createDate = new Date(note.createDate);
+        return note;
+    })
+    console.dir(this)
+    const i = notes.findIndex(note => note.title === this.parentElement.parentElement.firstChild.textContent);
+
+    document.querySelector('#noteTitle').value = notes[i].title;
+    console.log(notes[i].title);
+    document.querySelector('#noteContent').value = notes[i].content;
+    pin = notes[i].pinned;
+    const colourPin = document.querySelector('#pin');
+    if (pin == true) {
+        pin = true;
+        colourPin.classList.add('colPin')
+    } else {
+        pin = false
+        colourPin.classList.remove('colPin')
+    }
+
+    color = notes[i].colour;
+    console.log(color);
+
+    const colors = document.querySelectorAll('.rd');
+    for (let col of colors) {
+        if (col.id == color) {
+            col.checked = true;
+        }
+    }
+
+}
+
+
+function icon() {
+
+    let elementsArray = document.querySelectorAll(".note");
+    elementsArray.forEach(function(elem) {
+        elem.addEventListener('mouseover', function() {
+            elem.lastElementChild.classList.add('visible')
+            console.dir(elem);
+        });
+    });
+
+    elementsArray.forEach(function(elem) {
+        elem.addEventListener('mouseout', function() {
+            elem.lastElementChild.classList.remove('visible')
+
+            console.log(' nie działa');
+        });
+    });
+}
+
+icon();
 
 
 

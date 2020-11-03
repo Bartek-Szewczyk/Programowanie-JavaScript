@@ -14,7 +14,7 @@ body * {
 }
 
 .visible {
-    display: flex;
+    display: inline-flex;
 }
 
 .createNote {
@@ -33,7 +33,7 @@ body * {
     display: flex;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     background-color: rgb(37, 37, 37);
 }
 
@@ -50,13 +50,18 @@ body * {
     padding-left: 10px;
 }
 
+.far {
+    color: rgb(146, 148, 248);
+    padding-left: 8px;
+}
+
 article .existPin {
     color: rgb(172, 9, 9);
 }
 
 .note {
-    display: block;
     max-width: 450px;
+    max-height: 300px;
     margin: 10px;
     text-align: center;
     border-radius: 5px;
@@ -67,23 +72,30 @@ article .existPin {
     padding-right: 10px;
 }
 
-.fas {
+.note h4 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.icon {
     color: rgb(75, 76, 129);
     font-size: 20px;
     cursor: pointer;
+    padding-bottom: 10px;
 }
 
 .notePin {
     padding-left: 10px;
 }
 
-.colPin {
-    color: rgb(172, 9, 9);
-}
-
-.far {
+.fas {
     color: rgb(146, 148, 248);
     padding-left: 8px;
+    font-size: 20px;
+}
+
+.colPin {
+    color: rgb(172, 9, 9);
 }
 
 .title {
