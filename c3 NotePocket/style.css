@@ -56,7 +56,7 @@ body * {
 }
 
 article .existPin {
-    color: rgb(172, 9, 9);
+    color: rgb(238, 238, 238);
 }
 
 .note {
@@ -68,6 +68,11 @@ article .existPin {
 }
 
 .note p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.note h1 {
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -90,12 +95,12 @@ article .existPin {
 
 .fas {
     color: rgb(146, 148, 248);
-    padding-left: 8px;
+    padding-left: 12px;
     font-size: 20px;
 }
 
 .colPin {
-    color: rgb(172, 9, 9);
+    color: rgb(238, 238, 238);
 }
 
 .title {
@@ -340,22 +345,27 @@ textarea.question+label>span {
 
 .ciGrey {
     background: rgb(68, 68, 68);
+    box-shadow: 0 0 1em rgb(68, 68, 68);
 }
 
 .ciRed {
     background: rgb(172, 9, 9);
+    box-shadow: 0 0 1em rgb(172, 9, 9);
 }
 
 .ciGreen {
     background: #22940c;
+    box-shadow: 0 0 1em #22940c;
 }
 
 .ciYellow {
     background: #c3e01f;
+    box-shadow: 0 0 1em #c3e01f;
 }
 
 .ciBlue {
     background: #3f7df1;
+    box-shadow: 0 0 1em #3f7df1;
 }
 
 .control input:disabled~.control_indicator {
