@@ -38,11 +38,11 @@ body * {
 }
 
 .note {
-    background-color: silver;
     display: block;
     max-width: 450px;
     margin: 10px;
     text-align: center;
+    border-radius: 5px;
 }
 
 .title {
@@ -92,7 +92,7 @@ a {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient( 120deg, transparent, rgba(146, 148, 248, 0.4), transparent);
+    background: linear-gradient(120deg, transparent, rgba(146, 148, 248, 0.4), transparent);
     transition: all 650ms;
 }
 
@@ -248,4 +248,144 @@ textarea.question+label>span {
 .clBtn-2 {
     transform: rotateZ(45deg) translate(-6px, -5px);
     background-color: rgb(146, 148, 248);
+}
+
+
+/* ---------------------Radio------------------- */
+
+.control-group {
+    margin-top: 20px;
+}
+
+.control {
+    font-family: arial;
+    display: inline-flex;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 5px;
+    padding-top: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.control_indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 0px solid #000000;
+    border-radius: undefinedpx;
+}
+
+.ciRed {
+    background: rgb(172, 9, 9);
+}
+
+.ciGreen {
+    background: #22940c;
+}
+
+.ciYellow {
+    background: #c3e01f;
+}
+
+.ciBlue {
+    background: #3f7df1;
+}
+
+.control input:disabled~.control_indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.control input:checked~.control_indicator:after {
+    display: block;
+}
+
+.control-radio .control_indicator {
+    border-radius: 50%;
+}
+
+.control-radio .control_indicator:after {
+    left: 7px;
+    top: 7px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    transition: background 250ms;
+}
+
+.control-radio input:disabled~.control_indicator:after {
+    background: rgb(146, 148, 248);
+}
+
+.control-radio .control_indicator::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-left: -1.3rem;
+    margin-top: -1.3rem;
+    background: #2aa1c0;
+    border-radius: 3rem;
+    opacity: 0.6;
+    z-index: 99999;
+    transform: scale(0);
+}
+
+@keyframes s-ripple {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    20% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.01;
+        transform: scale(1);
+    }
+}
+
+@keyframes s-ripple-dup {
+    0% {
+        transform: scale(0);
+    }
+    30% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+.control-radio input+.control_indicator::before {
+    animation: s-ripple 250ms ease-out;
+}
+
+.control-radio input:checked+.control_indicator::before {
+    animation-name: s-ripple-dup;
 }

@@ -20,13 +20,28 @@ function onNewNote() {
 
     const title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
+    const colors = document.querySelectorAll('.rd');
+    console.dir(colors);
     console.log(title, content);
+    let color;
+    for (let c of colors) {
+        switch (c.checked) {
+            case true:
+                color = c.id;
+                console.log(color);
+                break;
+
+            default:
+                break;
+        }
+    }
+
 
     // nowa notatka
     const note = {
         title: title,
         content: content,
-        colour: '#ff000',
+        colour: color,
         pinned: false,
         createDate: new Date()
     };
@@ -47,6 +62,7 @@ function onNewNote() {
 function clearNew() {
     document.querySelector("#noteTitle").value = "";
     document.querySelector("#noteContent").value = "";
+
 }
 // // zmiana html z poziomu js sposob brutalny 
 // for (let note of notes) {
@@ -92,6 +108,7 @@ function addHtml() {
         htmlDate.innerHTML = note.createDate.toLocaleString();
         htmlBtn.innerHTML = 'Remove';
         htmlBtn.classList.add(`forRemove${rem}`)
+        htmlSection.classList.add(`${note.colour}`)
 
 
         htmlSection.appendChild(htmlTitle);
