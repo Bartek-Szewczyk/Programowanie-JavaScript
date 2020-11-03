@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>NotePocked</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -25,7 +26,11 @@
             <label><span>Your Note</span></label>
             <div class="control-group">
                 <label class="control control-radio">
-                    <input class="rd" type="radio" name="radio" id="ciRed" checked="checked" />
+                    <input class="rd" type="radio" name="radio" id="ciGrey" checked="checked" />
+                    <div class="control_indicator ciGrey"></div>
+                </label>
+                <label class="control control-radio">
+                    <input class="rd" type="radio" name="radio" id="ciRed"  />
                     <div class="control_indicator ciRed" ></div>
                 </label>
                 <label class="control control-radio">
@@ -40,7 +45,7 @@
                     <input class="rd" type="radio" name="radio" id="ciBlue"/>
                     <div class="control_indicator ciBlue"></div>
                 </label>
-
+                <i class="fas fa-thumbtack " id="pin"></i>
             </div>
 
             <div class="back">
@@ -51,8 +56,12 @@
     </section>
 
     <div class="container">
-        <a class="btn" id="createNote">Create Note</a>
+        <a class="btn" id="createNote">Create Note <i class="far fa-sticky-note"></i></a>
     </div>
+
+    <article class="pinNote">
+
+    </article>
 
     <main class="allNote">
 

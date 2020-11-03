@@ -37,12 +37,53 @@ body * {
     background-color: rgb(37, 37, 37);
 }
 
+.pinNote {
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 30vh;
+    background-color: rgb(37, 37, 37);
+}
+
+.existPin {
+    padding-left: 10px;
+}
+
+article .existPin {
+    color: rgb(172, 9, 9);
+}
+
 .note {
     display: block;
     max-width: 450px;
     margin: 10px;
     text-align: center;
     border-radius: 5px;
+}
+
+.note p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fas {
+    color: rgb(75, 76, 129);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.notePin {
+    padding-left: 10px;
+}
+
+.colPin {
+    color: rgb(172, 9, 9);
+}
+
+.far {
+    color: rgb(146, 148, 248);
+    padding-left: 8px;
 }
 
 .title {
@@ -79,6 +120,7 @@ a {
     border: 1px solid rgb(146, 148, 248);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -282,6 +324,10 @@ textarea.question+label>span {
     width: 20px;
     border: 0px solid #000000;
     border-radius: undefinedpx;
+}
+
+.ciGrey {
+    background: rgb(68, 68, 68);
 }
 
 .ciRed {

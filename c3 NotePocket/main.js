@@ -14,7 +14,22 @@ function noVisible() {
     clearNew()
 }
 
-document.querySelector('.closeBtn').addEventListener('click', noVisible)
+document.querySelector('.closeBtn').addEventListener('click', noVisible);
+
+document.querySelector('#pin').addEventListener('click', pinned);
+let pin = false;
+
+function pinned() {
+    const colourPin = document.querySelector('#pin');
+    if (pin == false) {
+        pin = true
+        colourPin.classList.add('colPin')
+    } else {
+        pin = false;
+        colourPin.classList.remove('colPin')
+
+    }
+}
 
 function onNewNote() {
 
@@ -36,17 +51,18 @@ function onNewNote() {
         }
     }
 
-
+    console.log(pin);
     // nowa notatka
     const note = {
         title: title,
         content: content,
         colour: color,
-        pinned: false,
+        pinned: pin,
         createDate: new Date()
     };
     //notatka dodana do ablicy notatek
     notes.push(note);
+
 
 
     //tablioca dodana do localstorage
@@ -63,22 +79,11 @@ function clearNew() {
     document.querySelector("#noteTitle").value = "";
     document.querySelector("#noteContent").value = "";
 
+    pin = false;
+    const colourPin = document.querySelector('#pin');
+    colourPin.classList.remove('colPin')
+
 }
-// // zmiana html z poziomu js sposob brutalny 
-// for (let note of notes) {
-
-//     const htmlNote = ` 
-//     <section class = "note">
-//     <h1>${note.title}</h1>
-//     <p>${note.content}</p>
-//     <h4>${note.createDate.toLocaleString()}</h4>
-//     </section>
-//     `;
-
-//     const main = document.querySelector('main');
-//     main.innerHTML += htmlNote;
-
-// }
 
 
 
@@ -92,7 +97,9 @@ function addHtml() {
     })
     let rem = 0;
     const main = document.querySelector('main');
+    const article = document.querySelector('article');
     main.innerHTML = '';
+    article.innerHTML = '';
     // zmiana html-a z poziomu js-a - sposób obiektowy
     for (let note of notes) {
 
@@ -100,27 +107,41 @@ function addHtml() {
         const htmlTitle = document.createElement('h1');
         const htmlContent = document.createElement('p');
         const htmlDate = document.createElement('h4');
-        const htmlBtn = document.createElement('button')
+        const htmlBtn = document.createElement('i');
+        const htmlPin = document.createElement('i')
 
-        htmlSection.classList.add('note');
+
+        htmlSection.classList.add('note', `${note.colour}`);
         htmlTitle.innerHTML = note.title;
         htmlContent.innerHTML = note.content;
         htmlDate.innerHTML = note.createDate.toLocaleString();
-        htmlBtn.innerHTML = 'Remove';
-        htmlBtn.classList.add(`forRemove${rem}`)
-        htmlSection.classList.add(`${note.colour}`)
+        htmlBtn.classList.add('fas', 'fa-trash-alt', `forRemove${rem}`);
+        htmlPin.classList.add('fas', 'fa-thumbtack', 'existPin', `forPin${rem}`)
 
 
         htmlSection.appendChild(htmlTitle);
         htmlSection.appendChild(htmlContent);
         htmlSection.appendChild(htmlDate);
         htmlSection.appendChild(htmlBtn);
+        htmlSection.appendChild(htmlPin);
+        console.dir(htmlSection);
+        switch (note.pinned) {
+            case false:
+                main.appendChild(htmlSection);
+                break;
+            case true:
+                article.appendChild(htmlSection);
+                break;
+            default:
+                break;
+        }
 
 
-        main.appendChild(htmlSection);
+
+
 
         document.querySelector(`.forRemove${rem}`).addEventListener('click', removeNote);
-
+        document.querySelector(`.forPin${rem}`).addEventListener('click', ePinned);
         rem++;
     }
 
@@ -146,3 +167,46 @@ function removeNote() {
 
     addHtml();
 }
+
+function ePinned() {
+    const notesFromStorage = JSON.parse(localStorage.getItem(localStorageNoteKey));
+    notes = notesFromStorage.map(note => {
+        note.createDate = new Date(note.createDate);
+        return note;
+    })
+    const i = notes.findIndex(note => note.title === this.parentElement.firstChild.textContent);
+
+    const editnote = notes[i];
+    if (editnote.pinned === false) {
+        editnote.pinned = true;
+    } else {
+        editnote.pinned = false
+    }
+
+
+
+
+    localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
+
+    addHtml();
+}
+
+
+
+
+
+// // zmiana html z poziomu js sposob brutalny 
+// for (let note of notes) {
+
+//     const htmlNote = ` 
+//     <section class = "note">
+//     <h1>${note.title}</h1>
+//     <p>${note.content}</p>
+//     <h4>${note.createDate.toLocaleString()}</h4>
+//     </section>
+//     `;
+
+//     const main = document.querySelector('main');
+//     main.innerHTML += htmlNote;
+
+// }
