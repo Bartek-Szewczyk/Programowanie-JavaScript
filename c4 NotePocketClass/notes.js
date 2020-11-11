@@ -1,51 +1,54 @@
 class Notes {
     constructor() {
+        this.notes = [];
         this.db = new Db();
-        this.notes = this.db.get();
-
+        this.htmlObj = new UI();
+        this.notess = this.db.get();
     }
 
     addNote(note) {
-        const colors = document.querySelectorAll('.rd');
-        let color;
-        for (let c of colors) {
-            switch (c.checked) {
-                case true:
-                    color = c.id;
-                    console.log(color);
-                    break;
-
-                default:
-                    break;
-            }
-        }
         this.notes.push(note);
-        this.db.save(this.notes)
+        this.db.save(this.notes);
+        this.htmlObj.addHtml(this.db.get(), this.notes);
+
     }
-    getNote() {
+
+    removeNote(id) {
+        this.notes = this.db.get();
+        this.noteId = id;
+        let i = this.notes.findIndex(note => note.id === this.noteId)
+        if (i !== -1) {
+            this.notes.splice(i, 1)
+        }
+        this.db.save(this.notes)
+        this.htmlObj.addHtml(this.db.get());
+        console.log(this.notes);
+        rem();
+        pin();
+    }
+    getNotes() {
         return this.notes;
     }
-    removeNote() {
-        const notesFromStorage = JSON.parse(notes);
-        notes = notesFromStorage.map(note => {
-            note.createDate = new Date(note.createDate);
-            return note;
-        })
+    getNote(id) {
+        return this.notes.find(el => el.id === id)
+    }
+    ePinned(id) {
+        this.notes = this.db.get();
+        this.noteId = id;
 
-        const i = notes.findIndex(note => note.title === this.parentElement.parentElement.firstChild.textContent)
+        let i = this.notes.findIndex(note => note.id === this.noteId)
 
-        if (i !== -1) {
-            notes.splice(i, 1)
+        const editnote = this.notes[i];
+        if (editnote.pinned === false) {
+            editnote.pinned = true;
+        } else {
+            editnote.pinned = false
         }
 
-        console.dir(this);
-
-        this.db.save(notes)
-
-        addHtml();
-        icon();
+        this.db.save(this.notes)
+        this.htmlObj.addHtml(this.db.get());
+        pin();
+        rem();
     }
-
-
 
 }

@@ -6,6 +6,7 @@ class Db {
         localStorage.setItem(this.lsKey, JSON.stringify(notes));
     }
     get() {
-        return localStorage.getItem(this.lsKey);
+        return JSON.parse(localStorage.getItem(this.lsKey));
+
     }
 }
