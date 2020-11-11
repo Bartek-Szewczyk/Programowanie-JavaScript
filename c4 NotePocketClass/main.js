@@ -20,6 +20,7 @@ document.querySelector('#pin').addEventListener('click', pinned);
 let pin = false;
 
 function pinned() {
+
     const colourPin = document.querySelector('#pin');
     if (pin == false) {
         pin = true
@@ -31,43 +32,12 @@ function pinned() {
     }
 }
 
+
+
 function onNewNote() {
 
     const title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
-    const colors = document.querySelectorAll('.rd');
-    console.dir(colors);
-    console.log(title, content);
-    let color;
-    for (let c of colors) {
-        switch (c.checked) {
-            case true:
-                color = c.id;
-                console.log(color);
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    console.log(pin);
-    // nowa notatka
-    const note = {
-        title: title,
-        content: content,
-        colour: color,
-        pinned: pin,
-        createDate: new Date()
-    };
-    //notatka dodana do ablicy notatek
-    notes.push(note);
-
-
-
-    //tablioca dodana do localstorage
-    localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
-
 
     noVisible();
     addHtml();
