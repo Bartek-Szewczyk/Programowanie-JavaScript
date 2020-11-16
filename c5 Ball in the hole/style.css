@@ -1,0 +1,13 @@
+#mySVG {
+    width: 100vw;
+    height: 100vh;
+}
+
+.holes {
+    position: absolute;
+    background-color: rgb(84, 93, 139);
+    border: 2ps solid blue;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
