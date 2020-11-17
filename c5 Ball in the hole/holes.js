@@ -27,11 +27,11 @@ class Hole {
         }
     }
     CheckHole() {
-        console.log(this.holes[0]);
+
 
         for (let i = 0; i < this.holes.length - 1; i++) {
             const hole = this.holes[i];
-            console.dir(hole);
+
             for (let j = i + 1; j < this.holes.length; j++) {
                 if (i.cx - j.cx < 70 || i.cy - j.cy < 70) {
                     this.holes.splice(j, 1)
@@ -44,7 +44,6 @@ class Hole {
         return this.holes[0]
     }
     GetHoles() {
-        console.log(this.hole);
         return this.hole;
 
     }
