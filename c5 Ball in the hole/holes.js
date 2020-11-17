@@ -18,7 +18,7 @@ class Hole {
             }
             myCircle.setAttributeNS(null, "cx", Math.random() * (window.innerWidth - 100));
             myCircle.setAttributeNS(null, "cy", Math.random() * (window.innerHeight - 100));
-            myCircle.setAttributeNS(null, "r", 50);
+            myCircle.setAttributeNS(null, "r", 40 + Math.random() * 30);
 
             myCircle.setAttributeNS(null, "stroke", "black");
             document.getElementById("holesSVG").appendChild(myCircle);

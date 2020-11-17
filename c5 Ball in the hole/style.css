@@ -1,3 +1,7 @@
+body {
+    background-color: dimgray;
+}
+
 #mySVG,
 #holesSVG {
     width: 100vw;
