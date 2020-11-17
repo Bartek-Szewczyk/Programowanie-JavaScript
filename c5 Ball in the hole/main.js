@@ -1,16 +1,18 @@
-;
-
-function onDeviceMove(ev) {
-    console.log(ev.alpha, ev.beta, ev.gamma);
-}
-
 const ball = new Ball();
-const hole = new Hole();
-
 ball.AddBall(100, 100);
-hole.AddHoles()
+const time = new Time();
+const score = new Score();
+setInterval(() => {
+    score.Win(ball);
+}, 100);
 
 window.addEventListener('deviceorientation', ball.Sensors)
-
+window.addEventListener('deviceorientation', time.Start)
+setTimeout(() => {
+    time.Stop();
+    const tt = time.Pomiar(time.stopczas, time.startczas)
+    console.log(time);
+}, 2000)
 window.requestAnimationFrame(ball.Move);
+
 console.dir(ball);

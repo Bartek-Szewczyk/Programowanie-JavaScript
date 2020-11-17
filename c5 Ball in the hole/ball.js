@@ -1,6 +1,6 @@
 class Ball {
     constructor() {
-        this.positionX = 100;
+        this.positionX = 1000;
         this.positionY = 100;
         this.speedX = 0;
         this.speedY = 0;
@@ -9,7 +9,7 @@ class Ball {
     AddBall(pX, pY) {
         pX = ball.positionX;
         pY = ball.positionY;
-        console.log(ball);
+
         const BodySVG = document.getElementById("mySVG");
         BodySVG.innerHTML = '';
         const svgNS = "http://www.w3.org/2000/svg";
@@ -24,7 +24,7 @@ class Ball {
     }
 
     Sensors(ev) {
-        console.log(ev);
+
         ball.speedX = ev.gamma / 20;
         ball.speedY = ev.beta / 45;
 
