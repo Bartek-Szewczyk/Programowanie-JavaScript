@@ -5,11 +5,12 @@ function onDeviceMove(ev) {
 }
 
 const ball = new Ball();
-const sens = new Sensor()
 const hole = new Hole();
-ball.Position(500, 300)
-ball.AddBall();
+
+ball.AddBall(100, 100);
 hole.AddHoles()
 
-window.requestAnimationFrame(sens.Move)
+window.addEventListener('deviceorientation', ball.Sensors)
+
+window.requestAnimationFrame(ball.Move);
 console.dir(ball);

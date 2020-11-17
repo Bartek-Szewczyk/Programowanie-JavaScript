@@ -13,7 +13,7 @@ class Hole {
             myCircle.setAttributeNS(null, "r", 50);
             myCircle.setAttributeNS(null, "fill", "blue");
             myCircle.setAttributeNS(null, "stroke", "black");
-            document.getElementById("mySVG").appendChild(myCircle);
+            document.getElementById("holesSVG").appendChild(myCircle);
         }
 
 
