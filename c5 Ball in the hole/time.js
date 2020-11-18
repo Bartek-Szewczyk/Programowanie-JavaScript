@@ -6,7 +6,6 @@ class Time {
     }
     Start() {
         this.startczas = Date.now();
-        console.log(time.startczas);
 
     }
     Stop() {
