@@ -24,7 +24,7 @@ class Score {
 
 
                 document.querySelector("#ver").innerHTML = 'WYGRANA';
-                document.querySelector('#time').innerHTML = 'twój czas to: ' + time.pomiar;
+                document.querySelector('#time').innerHTML = 'twój czas to: ' + time.pomiar + 's';
 
                 document.querySelector('.showScore').classList.add('visible')
             }

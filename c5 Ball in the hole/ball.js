@@ -20,6 +20,7 @@ class Ball {
         myCircle.setAttributeNS(null, "r", 35);
         myCircle.setAttributeNS(null, "fill", "green");
         myCircle.setAttributeNS(null, "stroke", "black");
+
         BodySVG.appendChild(myCircle);
     }
 

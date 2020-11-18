@@ -32,6 +32,18 @@ body {
     color: white;
 }
 
+#time {
+    text-align: center;
+    font-size: 55px;
+}
+
+#ver {
+    margin-top: 40vh;
+    justify-content: center;
+    text-align: center;
+    font-size: 60px;
+}
+
 .visible {
     display: block;
 }
