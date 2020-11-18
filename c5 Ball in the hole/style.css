@@ -17,3 +17,21 @@ body {
     width: 70px;
     border-radius: 50%;
 }
+
+.showScore {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+#ver,
+#time {
+    color: white;
+}
+
+.visible {
+    display: block;
+}

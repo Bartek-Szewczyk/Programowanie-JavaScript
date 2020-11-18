@@ -2,7 +2,7 @@ class Score {
     constructor() {
         this.holes = new Hole();
         this.holes.AddHoles();
-        console.log(this.holes);
+        console.log(this.holes.GetWinHole());
         this.hol = this.holes;
     }
 
@@ -16,7 +16,9 @@ class Score {
             console.log(time.startczas, time.stopczas);
             console.log(time.pomiar);
             console.log("wygrana")
-
+            document.querySelector("#ver").innerHTML = 'WYGRANA';
+            document.querySelector('#time').innerHTML = 'twój czas to: ' + time.pomiar;
+            document.querySelector('.showScore').classList.add('visible')
         }
 
     }
@@ -26,13 +28,9 @@ class Score {
         hole.push(this.hol)
 
         let odl = [];
-        for (let i = 0; i < hole[0].holes.length; i++) {
-            const odleglosc = Math.sqrt(Math.pow(hole[0].holes[i].cx.baseVal.value - ball.positionX, 2) + Math.pow(hole[0].holes[i].cy.baseVal.value - ball.positionY, 2));
-
-
-            odl.push(odleglosc)
-
-
+        for (let i = 1; i < hole[0].holes.length; i++) {
+            const odlegloscP = Math.sqrt(Math.pow(hole[0].holes[i].cx.baseVal.value - ball.positionX, 2) + Math.pow(hole[0].holes[i].cy.baseVal.value - ball.positionY, 2));
+            odl.push(odlegloscP)
         }
 
         for (const o of odl) {
@@ -41,10 +39,15 @@ class Score {
                 time.Pomiar()
                 console.log(time.startczas, time.stopczas);
                 console.log(time.pomiar);
-                console.log("wygrana")
-
+                console.log("przegrana")
+                document.querySelector("#ver").innerHTML = 'przegrana';
+                document.querySelector('#time').innerHTML = 'twój czas to: ' + time.pomiar;
+                document.querySelector('.showScore').classList.add('visible')
             }
         }
 
     }
+
+
+
 }
