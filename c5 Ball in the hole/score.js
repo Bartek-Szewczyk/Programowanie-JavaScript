@@ -4,17 +4,18 @@ class Score {
         this.holes.AddHoles();
         console.log(this.holes.GetWinHole());
         this.hol = this.holes;
+        this.a = 0;
     }
 
     Win(ball) {
 
         const odleglosc = Math.sqrt(Math.pow(this.holes.GetWinHole().cx.baseVal.value - ball.positionX, 2) + Math.pow(this.holes.GetWinHole().cy.baseVal.value - ball.positionY, 2));
 
-        let a = 0;
+
         if (odleglosc < 35) {
 
-            console.log(a);
-            if (a == 1) {
+            console.log(this.a);
+            if (this.a == 1) {
                 time.Stop();
                 time.Pomiar()
                 console.log(time.startczas, time.stopczas);
@@ -28,7 +29,7 @@ class Score {
                 document.querySelector('.showScore').classList.add('visible')
             }
             this.holes.NewWin()
-            a++;
+            this.a++;
         }
 
 
