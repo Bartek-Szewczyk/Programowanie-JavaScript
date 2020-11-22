@@ -14,6 +14,9 @@ setInterval(() => {
 
 
 window.addEventListener('deviceorientation', ball.Sensors)
-window.addEventListener('deviceorientation', time.Start())
+document.querySelector('#start').addEventListener('click', () => {
+    document.querySelector('.start').classList.remove('visible')
+    time.Start();
+})
 
 window.requestAnimationFrame(ball.Move);
