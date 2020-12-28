@@ -18,7 +18,6 @@ class Snow {
                 opacity: Math.random(),
                 speedX: this.random(-11, 11),
                 speedY: this.random(7, 15),
-                radius: this.random(0.5, 4.2),
             })
         }
     };
@@ -27,12 +26,15 @@ class Snow {
         let canvas = document.querySelector('#canvas');
         let ctx = canvas.getContext('2d');
         for (let i in this.flakesArray) {
+            let x = this.flakesArray[i].x;
+            let y = this.flakesArray[i].y;
+            let im = this.random(25, 70);
             this.flakesArray[i] = new Image();
             this.flakesArray[i].addEventListener("load", function() {
-                ctx.drawImage(this, 100, 100)
+                ctx.drawImage(this, x, y, im, im)
             });
 
-            this.flakesArray[i].src = "./falkes/f" + Math.round(this.random(1, 2)) + ".png";
+            this.flakesArray[i].src = "./falkes/f" + Math.round(this.random(1, 3)) + ".png";
         }
 
     };
