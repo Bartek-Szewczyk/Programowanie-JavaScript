@@ -1,2 +1,2 @@
-const snow = new Snow(600);
+const snow = new Snow(300);
 snow.PlaySnow();
