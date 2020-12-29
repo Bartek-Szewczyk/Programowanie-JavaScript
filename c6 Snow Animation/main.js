@@ -1,4 +1,2 @@
-const snow = new Snow(200);
+const snow = new Snow(500);
 snow.PlaySnow();
-snow.Update()
-    //window.requestAnimationFrame(snow.Update)
