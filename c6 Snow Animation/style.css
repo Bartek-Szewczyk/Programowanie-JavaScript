@@ -1,3 +1,19 @@
 #canvas {
-    background-color: royalblue;
+    -webkit-animation: tlo 10s infinite;
+    animation: tlo 10s infinite;
+}
+
+@-webkit-keyframes tlo {
+    0% {
+        background-color: #00008B;
+    }
+    25% {
+        background-color: #1E90FF;
+    }
+    50% {
+        background-color: #6495ED;
+    }
+    100% {
+        background-color: #00008B;
+    }
 }

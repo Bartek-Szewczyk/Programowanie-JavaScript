@@ -7,24 +7,25 @@ class Snow {
         this.flakesOnScreen = flakesOnScreen;
         this.flakesArray = [];
 
-
     }
-    random(min, max) {
-
-        return Math.random() * (max - min + 1) + min;
-    };
 
     CreateSnowFlakes() {
+
+        function random(min, max) {
+
+            return Math.random() * (max - min + 1) + min;
+        };
+
         for (let i = 0; i < this.flakesOnScreen; i++) {
             let color = ["white", "#708090", "#B0C4DE", "#F0FFFF", "#FFFAFA"];
             this.flakesArray.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
                 opacity: Math.random(),
-                speedX: this.random(-3, 3),
-                speedY: this.random(3, 11),
-                radius: this.random(0.5, 4.5),
-                color: color[Math.round(this.random(0, 4))]
+                speedX: random(-3, 3),
+                speedY: random(3, 11),
+                radius: random(0.5, 4.5),
+                color: color[Math.round(random(0, 4))]
             })
         }
         console.log(this.flakesArray);
