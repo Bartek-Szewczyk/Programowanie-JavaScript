@@ -85,7 +85,7 @@ function addHtml() {
 
         htmlSection.classList.add('note', 'ciYellow');
         htmlCity.innerHTML = note.city;
-        htmlTemp.innerHTML = "Temperstura: " + note.temp + " °C";
+        htmlTemp.innerHTML = "Temperatura: " + note.temp + " °C";
         htmlHum.innerHTML = "Wilgotność: " + note.hum + " %";
         htmlIcon.src = `http://openweathermap.org/img/wn/${note.icon}@2x.png`
         htmlDate.innerHTML = note.createDate.toLocaleString();

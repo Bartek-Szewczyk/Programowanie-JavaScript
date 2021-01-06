@@ -35,7 +35,7 @@ body * {
     justify-content: center;
     width: 100vw;
     height: 80vh;
-    background-color: rgb(105, 157, 224);
+    background: linear-gradient(180deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
 }
 
 #container {
@@ -45,7 +45,7 @@ body * {
     justify-content: center;
     width: 100vw;
     height: 20vh;
-    background-color: rgb(105, 157, 224);
+    background-color: rgba(63, 94, 251, 1);
 }
 
 .pinNote {
@@ -227,8 +227,8 @@ a {
 }
 
 .ciYellow {
-    background: #c3e01f;
-    box-shadow: 0 0 1em #c3e01f;
+    background: #8284e4;
+    box-shadow: 0 0 1em#8284e4;
 }
 
 .ciBlue {
