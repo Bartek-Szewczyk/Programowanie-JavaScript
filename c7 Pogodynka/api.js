@@ -1,22 +1,28 @@
 const localStorageNoteKey = 'notesApi';
 let notes = [];
 
-
-console.log(notes);
 const opwApiKey = 'e00c0f7f8610475bd47ef7eab93ff980';
-const openW = `https://api.openweathermap.org/data/2.5/weather?id=3094802&appid=${opwApiKey}`;
+let openW;
+let addWeather;
 
-let showProgressBar = true;
+let findCity = document.querySelector('#city')
+const btn = document.querySelector('#findBtn')
+btn.addEventListener('click', () => {
+    console.log(findCity.value);
+    openW = `https://api.openweathermap.org/data/2.5/weather?q=${findCity.value}&units=metric&appid=${opwApiKey}`;
+
+    addWeather = fetch(openW)
+    pp()
 
 
 
-function roundTo(value, places) {
-    var power = Math.pow(10, places);
-    return Math.round(value * power) / power;
-}
 
-const addWeather = fetch(openW)
-console.log(addWeather);
+})
+console.log(findCity.value);
+console.log(notes);
+
+
+
 
 function pp() {
 
@@ -27,17 +33,13 @@ function pp() {
         })
         .then(pogoda => {
             console.log("seconds .then", pogoda);
-            let img = new Image;
-            let icon = pogoda.weather[0].icon
-            img.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-            document.body.querySelector("#container").appendChild(img);
             return pogoda;
         })
         .then(pogoda => {
 
             const note = {
                 city: pogoda.name,
-                temp: roundTo(pogoda.main.temp - 273.15, 2),
+                temp: pogoda.main.temp,
                 colour: "red",
                 pinned: false,
                 hum: pogoda.main.humidity,
@@ -47,15 +49,15 @@ function pp() {
             notes.push(note);
             localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
             console.log(notes);
-
+            addHtml()
         })
         .catch((e) => {
             console.error("catched exception: ", e)
         })
-}
-pp()
 
-addHtml()
+}
+
+
 
 function addHtml() {
     console.log(notes);
@@ -65,6 +67,7 @@ function addHtml() {
         note.createDate = new Date(note.createDate);
         return note;
     })
+    let rem = 0;
     const main = document.querySelector('main');
     main.innerHTML = '';
     // zmiana html-a z poziomu js-a - sposób obiektowy
@@ -78,18 +81,16 @@ function addHtml() {
         const htmlDate = document.createElement('h4');
         const htmlDivIcon = document.createElement('div')
         const htmlBtn = document.createElement('i');
-        const htmlPin = document.createElement('i');
-        const htmlEdit = document.createElement('i');
 
 
-        htmlSection.classList.add('note');
+        htmlSection.classList.add('note', 'ciYellow');
         htmlCity.innerHTML = note.city;
         htmlTemp.innerHTML = "Temperstura: " + note.temp + " °C";
         htmlHum.innerHTML = "Wilgotność: " + note.hum + " %";
         htmlIcon.src = `http://openweathermap.org/img/wn/${note.icon}@2x.png`
         htmlDate.innerHTML = note.createDate.toLocaleString();
-
-
+        htmlBtn.classList.add('fas', 'fa-trash-alt', `forRemove${rem}`);
+        htmlDivIcon.classList.add('icon', 'noVisible');
 
         htmlSection.appendChild(htmlCity);
         htmlSection.appendChild(htmlTemp);
@@ -97,16 +98,59 @@ function addHtml() {
         htmlSection.appendChild(htmlIcon)
         htmlSection.appendChild(htmlDate);
         htmlSection.appendChild(htmlBtn);
-        htmlSection.appendChild(htmlPin);
         htmlSection.appendChild(htmlDivIcon);
-        htmlSection.appendChild(htmlEdit);
+
         htmlDivIcon.appendChild(htmlBtn);
-        htmlDivIcon.appendChild(htmlPin);
-        htmlDivIcon.appendChild(htmlEdit);
 
         console.dir(htmlSection);
         main.appendChild(htmlSection);
 
+        document.querySelector(`.forRemove${rem}`).addEventListener('click', removeNote);
+
+        rem++;
     }
 
 }
+addHtml();
+
+function removeNote() {
+    const notesFromStorage = JSON.parse(localStorage.getItem(localStorageNoteKey));
+    notes = notesFromStorage.map(note => {
+        note.createDate = new Date(note.createDate);
+        return note;
+    })
+
+    const i = notes.findIndex(note => note.city === this.parentElement.parentElement.firstChild.textContent)
+
+    if (i !== -1) {
+        notes.splice(i, 1)
+    }
+
+    console.dir(this);
+
+    localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
+
+    addHtml();
+    icon();
+}
+
+function icon() {
+
+    let elementsArray = document.querySelectorAll(".note");
+    elementsArray.forEach(function(elem) {
+        elem.addEventListener('mouseover', function() {
+            elem.lastElementChild.classList.add('visible')
+            console.dir(elem);
+        });
+    });
+
+    elementsArray.forEach(function(elem) {
+        elem.addEventListener('mouseout', function() {
+            elem.lastElementChild.classList.remove('visible')
+
+            console.log(' nie działa');
+        });
+    });
+}
+
+icon();
