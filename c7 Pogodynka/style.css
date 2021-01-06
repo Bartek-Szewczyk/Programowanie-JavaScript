@@ -72,7 +72,7 @@ article .existPin {
 
 .note {
     max-width: 450px;
-    max-height: 450px;
+    max-height: 500px;
     margin: 10px;
     text-align: center;
     border-radius: 5px;
@@ -342,6 +342,7 @@ input {
     border: none;
     background: none;
     border-bottom: 1px solid #757575;
+    color: #ffff;
 }
 
 input:focus {
@@ -371,7 +372,7 @@ input:focus~label,
 input:valid~label {
     top: -20px;
     font-size: 14px;
-    color: #5264AE;
+    color: #ffff;
 }
 
 
@@ -390,7 +391,7 @@ input:valid~label {
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: #5264AE;
+    background: #ffffff;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
@@ -470,7 +471,7 @@ input:focus~.highlight {
 .buttonStyle {
     margin-left: 20px;
     margin-bottom: 30px;
-    padding: 6px;
+    padding: 10px;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     text-decoration: none;
@@ -478,6 +479,7 @@ input:focus~.highlight {
     color: #FFFFFF;
     text-align: center;
     transition: all 0.15s;
+    background: none;
 }
 
 .buttonStyle:hover {

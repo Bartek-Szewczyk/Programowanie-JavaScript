@@ -9,14 +9,10 @@ let findCity = document.querySelector('#city')
 const btn = document.querySelector('#findBtn')
 btn.addEventListener('click', () => {
     console.log(findCity.value);
-    openW = `https://api.openweathermap.org/data/2.5/weather?q=${findCity.value}&units=metric&appid=${opwApiKey}`;
+    openW = `https://api.openweathermap.org/data/2.5/weather?q=${findCity.value}&units=metric&lang=pl&appid=${opwApiKey}`;
 
     addWeather = fetch(openW)
     pp()
-
-
-
-
 })
 console.log(findCity.value);
 console.log(notes);
@@ -39,11 +35,12 @@ function pp() {
 
             const note = {
                 city: pogoda.name,
+                tempO: pogoda.main.feels_like,
                 temp: pogoda.main.temp,
-                colour: "red",
-                pinned: false,
                 hum: pogoda.main.humidity,
+                pre: pogoda.main.pressure,
                 icon: pogoda.weather[0].icon,
+                des: pogoda.weather[0].description,
                 createDate: new Date()
             };
             notes.push(note);
@@ -75,9 +72,12 @@ function addHtml() {
 
         const htmlSection = document.createElement('section');
         const htmlCity = document.createElement('h1');
+        const htmlTempO = document.createElement('h4');
         const htmlTemp = document.createElement('p');
         const htmlHum = document.createElement('p');
+        const htmlPre = document.createElement('p');
         const htmlIcon = document.createElement('img');
+        const htmlDes = document.createElement('h4');
         const htmlDate = document.createElement('h4');
         const htmlDivIcon = document.createElement('div')
         const htmlBtn = document.createElement('i');
@@ -85,24 +85,29 @@ function addHtml() {
 
         htmlSection.classList.add('note', 'ciYellow');
         htmlCity.innerHTML = note.city;
+        htmlTempO.innerHTML = "Temperatura Odczuwalna: " + note.tempO + " °C";
         htmlTemp.innerHTML = "Temperatura: " + note.temp + " °C";
         htmlHum.innerHTML = "Wilgotność: " + note.hum + " %";
-        htmlIcon.src = `http://openweathermap.org/img/wn/${note.icon}@2x.png`
+        htmlPre.innerHTML = "Ciśnienie: " + note.pre + " hPa";
+        htmlIcon.src = `http://openweathermap.org/img/wn/${note.icon}@2x.png`;
+        htmlDes.innerHTML = note.des;
         htmlDate.innerHTML = note.createDate.toLocaleString();
         htmlBtn.classList.add('fas', 'fa-trash-alt', `forRemove${rem}`);
         htmlDivIcon.classList.add('icon', 'noVisible');
 
         htmlSection.appendChild(htmlCity);
+        htmlSection.appendChild(htmlTempO);
         htmlSection.appendChild(htmlTemp);
         htmlSection.appendChild(htmlHum);
-        htmlSection.appendChild(htmlIcon)
+        htmlSection.appendChild(htmlPre);
+        htmlSection.appendChild(htmlIcon);
+        htmlSection.appendChild(htmlDes);
         htmlSection.appendChild(htmlDate);
         htmlSection.appendChild(htmlBtn);
         htmlSection.appendChild(htmlDivIcon);
 
         htmlDivIcon.appendChild(htmlBtn);
 
-        console.dir(htmlSection);
         main.appendChild(htmlSection);
 
         document.querySelector(`.forRemove${rem}`).addEventListener('click', removeNote);
@@ -126,7 +131,6 @@ function removeNote() {
         notes.splice(i, 1)
     }
 
-    console.dir(this);
 
     localStorage.setItem(localStorageNoteKey, JSON.stringify(notes));
 
@@ -140,7 +144,7 @@ function icon() {
     elementsArray.forEach(function(elem) {
         elem.addEventListener('mouseover', function() {
             elem.lastElementChild.classList.add('visible')
-            console.dir(elem);
+
         });
     });
 
@@ -148,7 +152,6 @@ function icon() {
         elem.addEventListener('mouseout', function() {
             elem.lastElementChild.classList.remove('visible')
 
-            console.log(' nie działa');
         });
     });
 }
