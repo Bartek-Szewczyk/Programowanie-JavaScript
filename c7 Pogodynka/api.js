@@ -7,18 +7,17 @@ let addWeather;
 
 let findCity = document.querySelector('#city')
 const btn = document.querySelector('#findBtn')
-btn.addEventListener('click', () => {
-    console.log(findCity.value);
-    openW = `https://api.openweathermap.org/data/2.5/weather?q=${findCity.value}&units=metric&lang=pl&appid=${opwApiKey}`;
-
-    addWeather = fetch(openW)
-    pp()
-})
+btn.addEventListener('click', () => { apiCity(findCity.value) })
 console.log(findCity.value);
 console.log(notes);
 
 
+function apiCity(findcity) {
+    openW = `https://api.openweathermap.org/data/2.5/weather?q=${findcity}&units=metric&lang=pl&appid=${opwApiKey}`;
 
+    addWeather = fetch(openW)
+    pp()
+}
 
 function pp() {
 
@@ -53,7 +52,34 @@ function pp() {
         })
 
 }
+let newNote = [];
+const btnRef = document.querySelector('#refBtn')
+btnRef.addEventListener('click', refresh)
 
+setInterval(refresh, 120000)
+
+function refresh() {
+    console.log(newNote);
+    console.log(notes[0].city);
+    newNote = [];
+    for (let i = 0; i < notes.length; i++) {
+        let ct = notes[i].city;
+
+        newNote.push(ct)
+    }
+    console.log(newNote);
+    localStorage.removeItem(localStorageNoteKey)
+    console.log(notes);
+    // for (let i = 0; i < notes.length; i++) {
+    //     notes.shift()
+    // }
+    notes = [];
+    console.log(notes);
+    for (let i = 0; i < newNote.length; i++) {
+        apiCity(newNote[i])
+
+    }
+}
 
 
 function addHtml() {
