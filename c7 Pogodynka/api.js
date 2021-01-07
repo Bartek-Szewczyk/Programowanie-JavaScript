@@ -40,7 +40,7 @@ class Api {
                 notes.push(note);
                 localStorage.setItem(this.localStorageNoteKey, JSON.stringify(notes));
                 console.log(notes);
-
+                ui.AddHtml()
             })
             .catch((e) => {
                 console.error("catched exception: ", e)
@@ -63,5 +63,28 @@ class Api {
             this.ApiCity(newNote[i])
 
         }
+    }
+    RemoveNote() {
+
+        console.log(notes);
+        const notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
+        notes = notesFromStorage.map(note => {
+            note.createDate = new Date(note.createDate);
+
+            return note;
+
+        })
+
+        const i = notes.findIndex(note => note.city === this.parentElement.parentElement.firstChild.textContent)
+
+
+        if (i !== -1) {
+            notes.splice(i, 1)
+        }
+
+
+        localStorage.setItem(localStorageKey, JSON.stringify(notes));
+        ui.AddHtml();
+
     }
 }

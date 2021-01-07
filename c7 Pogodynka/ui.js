@@ -4,9 +4,10 @@ class Ui {
     }
 
     AddHtml() {
+        const localStorageKey = this.localStorageKey
         console.log(notes);
         //odczytanie tablicy notatek 
-        const notesFromStorage = JSON.parse(localStorage.getItem(this.localStorageKey));
+        const notesFromStorage = JSON.parse(localStorage.getItem('notesApi'));
         notes = notesFromStorage.map(note => {
             note.createDate = new Date(note.createDate);
             return note;
@@ -57,35 +58,19 @@ class Ui {
 
             main.appendChild(htmlSection);
 
-            document.querySelector(`.forRemove${rem}`).addEventListener('click', () => { this.RemoveNote() });
+            document.querySelector(`.forRemove${rem}`).addEventListener('click',
+                api.RemoveNote
+
+            );
 
             rem++;
         }
-        this.Icon()
+
+        ui.Icon()
     }
 
 
-    RemoveNote() {
-        console.log(notes);
-        const notesFromStorage = JSON.parse(localStorage.getItem(this.localStorageKey));
-        notes = notesFromStorage.map(note => {
-            note.createDate = new Date(note.createDate);
-            return note;
-            console.log(note);
-        })
 
-        const i = notes.findIndex(note => note.city === this.parentElement.parentElement.firstChild.textContent)
-
-        if (i !== -1) {
-            notes.splice(i, 1)
-        }
-
-
-        localStorage.setItem(this.localStorageKey, JSON.stringify(notes));
-
-        this.AddHtml();
-        this.Icon();
-    }
 
     Icon() {
 
