@@ -87,6 +87,6 @@ class Api {
 
         localStorage.setItem(localStorageKey, JSON.stringify(notes));
         ui.AddHtml();
-
+        document.querySelector('.tb').classList.remove('visible')
     }
 }

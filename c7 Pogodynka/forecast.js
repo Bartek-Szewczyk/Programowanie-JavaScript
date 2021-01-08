@@ -48,26 +48,6 @@ class Forecast {
     }
     UiForecast() {
 
-
-
-        // const htmlTime = document.createElement('h4');
-        // const htmlTempF = document.createElement('p');
-
-        // const a = [];
-        // for (let i = 0; i < 12; i++) {
-        //     const b = new Date(noteforecast[0].hourly[i].dt * 1000);
-        //     a.push(b.toLocaleTimeString())
-        // }
-        // htmlTime.innerHTML = a.toString()
-
-        // const te = [];
-        // for (let i = 0; i < 12; i++) {
-        //     const b = noteforecast[0].hourly[i].temp + " °C";
-        //     te.push(b)
-        // }
-        // htmlTempF.innerHTML = te.toString()
-
-        // const htmlTable = document.querySelector('.tb');
         for (let i = 0; i < 12; i++) {
             let th = document.querySelector(`.th1${i}`)
 
@@ -89,17 +69,6 @@ class Forecast {
             th.innerHTML = a.toLocaleTimeString();
 
         }
-
-        // const htmlTrS = document.createElement('tr')
-        // for (let i = 0; i < 12; i++) {
-        //     const htmlTh = document.createElement('th');
-        //     htmlTemp.innerHTML = noteforecast[0].hourly[i].temp + " °C";
-        //     htmlTrS.appendChild(htmlTh);
-        // }
-
-        // htmlSection.appendChild(htmlTable);
-        // htmlTable.appendChild(htmlTrf);
-
 
     }
 

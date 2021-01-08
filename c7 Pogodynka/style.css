@@ -76,19 +76,19 @@ article {
     background: rgba(252, 70, 107, 1);
 }
 
+.tempTab th {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.timeTab {}
+
 .note {
     max-width: 450px;
     max-height: 500px;
     margin: 10px;
     text-align: center;
     border-radius: 5px;
-    z-index: 20;
-}
-
-.tloMain {
-    height: 100%;
-    width: 100%;
-    z-index: 2;
 }
 
 .noteF {
