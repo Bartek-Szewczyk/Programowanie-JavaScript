@@ -35,6 +35,8 @@ class Api {
                     pre: pogoda.main.pressure,
                     icon: pogoda.weather[0].icon,
                     des: pogoda.weather[0].description,
+                    lat: pogoda.coord.lat,
+                    lon: pogoda.coord.lon,
                     createDate: new Date()
                 };
                 notes.push(note);

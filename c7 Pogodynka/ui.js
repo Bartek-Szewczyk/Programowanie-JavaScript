@@ -77,17 +77,47 @@ class Ui {
         let elementsArray = document.querySelectorAll(".note");
         elementsArray.forEach(function(elem) {
             elem.addEventListener('mouseover', function() {
-                elem.lastElementChild.classList.add('visible')
 
+                elem.lastElementChild.classList.add('visible')
+                    //document.querySelector('.tb').classList.add('visible')
             });
         });
 
         elementsArray.forEach(function(elem) {
             elem.addEventListener('mouseout', function() {
                 elem.lastElementChild.classList.remove('visible')
-
+                    //document.querySelector('.tb').classList.remove('visible')
             });
         });
     }
+
+    // UiForecast() {
+    //     const article = document.querySelector('.hour')
+
+    //     const htmlSection = document.createElement('section');
+    //     htmlSection.classList.add('note', 'ciYellow');
+
+    //     const htmlTable = document.createElement('table');
+    //     const htmlTrF = document.createElement('tr')
+    //     for (let i = 0; i < 12; i++) {
+    //         const htmlTh = document.createElement('th');
+    //         const a = new Date(noteforecast.hourly[i].dt * 1000);
+    //         htmlTh.innerHTML = a.toLocaleTimeString();
+    //         htmlTrF.appendChild(htmlTh);
+    //     }
+    //     const htmlTrS = document.createElement('tr')
+    //     for (let i = 0; i < 12; i++) {
+    //         const htmlTemp = document.createElement('th');
+    //         htmlTemp.innerHTML = noteforecast.hourly[i].temp + " °C";
+    //         htmlTrS.appendChild(htmlTh);
+    //     }
+
+    //     htmlSection.appendChild(htmlTable);
+    //     htmlTable.appendChild(htmlTrF);
+    //     htmlTable.appendChild(htmlTrS);
+
+
+    //     article.appendChild(htmlSection)
+    // }
 
 }

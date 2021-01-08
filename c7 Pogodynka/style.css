@@ -34,7 +34,7 @@ body * {
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 80vh;
+    height: 60vh;
     background: linear-gradient(180deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
 }
 
@@ -66,12 +66,26 @@ body * {
     padding-left: 8px;
 }
 
-article .existPin {
-    color: rgb(238, 238, 238);
+article {
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 20vh;
+    background: rgba(252, 70, 107, 1);
 }
 
 .note {
     max-width: 450px;
+    max-height: 500px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.noteF {
+    max-width: 1200px;
     max-height: 500px;
     margin: 10px;
     text-align: center;
