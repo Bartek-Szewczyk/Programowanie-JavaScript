@@ -20,8 +20,8 @@ class Ui {
 
             const htmlSection = document.createElement('section');
             const htmlCity = document.createElement('h1');
-            const htmlTempO = document.createElement('h4');
-            const htmlTemp = document.createElement('p');
+            const htmlTemp = document.createElement('h4');
+            const htmlTempO = document.createElement('p');
             const htmlHum = document.createElement('p');
             const htmlPre = document.createElement('p');
             const htmlIcon = document.createElement('img');
@@ -33,8 +33,8 @@ class Ui {
 
             htmlSection.classList.add('note', 'ciYellow');
             htmlCity.innerHTML = note.city;
-            htmlTempO.innerHTML = "Temperatura Odczuwalna: " + note.tempO + " °C";
             htmlTemp.innerHTML = "Temperatura: " + note.temp + " °C";
+            htmlTempO.innerHTML = "Temperatura Odczuwalna: " + note.tempO + " °C";
             htmlHum.innerHTML = "Wilgotność: " + note.hum + " %";
             htmlPre.innerHTML = "Ciśnienie: " + note.pre + " hPa";
             htmlIcon.src = `http://openweathermap.org/img/wn/${note.icon}@2x.png`;
@@ -44,8 +44,8 @@ class Ui {
             htmlDivIcon.classList.add('icon', 'noVisible');
 
             htmlSection.appendChild(htmlCity);
-            htmlSection.appendChild(htmlTempO);
             htmlSection.appendChild(htmlTemp);
+            htmlSection.appendChild(htmlTempO);
             htmlSection.appendChild(htmlHum);
             htmlSection.appendChild(htmlPre);
             htmlSection.appendChild(htmlIcon);
