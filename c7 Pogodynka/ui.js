@@ -79,14 +79,17 @@ class Ui {
             elem.addEventListener('mouseover', function() {
 
                 elem.lastElementChild.classList.add('visible')
-                    //document.querySelector('.tb').classList.add('visible')
+                const i = notes.findIndex(note => note.city === this.firstChild.innerHTML)
+                console.log(i);
+                forecast.NewForecast(i)
+                document.querySelector('.tb').classList.add('visible')
             });
         });
 
         elementsArray.forEach(function(elem) {
             elem.addEventListener('mouseout', function() {
                 elem.lastElementChild.classList.remove('visible')
-                    //document.querySelector('.tb').classList.remove('visible')
+                document.querySelector('.tb').classList.remove('visible')
             });
         });
     }

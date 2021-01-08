@@ -89,6 +89,7 @@ class Forecast {
             th.innerHTML = a.toLocaleTimeString();
 
         }
+
         // const htmlTrS = document.createElement('tr')
         // for (let i = 0; i < 12; i++) {
         //     const htmlTh = document.createElement('th');
