@@ -5,6 +5,7 @@ class Api {
         let openW;
         let addWeather;
         this.localStorageNoteKey = localStorageKey;
+        localStorage.setItem(this.localStorageNoteKey, JSON.stringify(notes));
     }
     ApiCity(findcity) {
 
@@ -64,7 +65,6 @@ class Api {
             this.ApiCity(newNote[i])
 
         }
-        ui.AddHtml();
     }
     RemoveNote() {
         const notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
