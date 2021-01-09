@@ -14,7 +14,6 @@ class Forecast {
 
         })
         noteforecast = []
-        console.log(notes);
         const opwApiKey = 'e00c0f7f8610475bd47ef7eab93ff980';
         this.openF = `https://api.openweathermap.org/data/2.5/onecall?lat=${notes[arrayIndex].lat}&lon=${notes[arrayIndex].lon}&exclude=minutely,daily&units=metric&lang=pl&appid=${opwApiKey}`;
 
@@ -36,7 +35,6 @@ class Forecast {
                 noteforecast.push(forecast)
                 for (let i = 0; i < 12; i++) {
                     const a = new Date(noteforecast[0].hourly[i].dt)
-                    console.log(a.toLocaleTimeString());
 
                 }
                 this.UiForecast();

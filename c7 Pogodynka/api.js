@@ -41,8 +41,9 @@ class Api {
                 };
                 notes.push(note);
                 localStorage.setItem(this.localStorageNoteKey, JSON.stringify(notes));
-                console.log(notes);
+
                 ui.AddHtml()
+
             })
             .catch((e) => {
                 console.error("catched exception: ", e)
@@ -50,7 +51,6 @@ class Api {
 
     }
     Refresh() {
-        console.log(notes[0].city);
         newNote = [];
         for (let i = 0; i < notes.length; i++) {
             let ct = notes[i].city;
@@ -60,15 +60,13 @@ class Api {
         localStorage.removeItem(this.localStorageNoteKey)
 
         notes = [];
-        console.log(notes);
         for (let i = 0; i < newNote.length; i++) {
             this.ApiCity(newNote[i])
 
         }
+        ui.AddHtml();
     }
     RemoveNote() {
-
-        console.log(notes);
         const notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
         notes = notesFromStorage.map(note => {
             note.createDate = new Date(note.createDate);

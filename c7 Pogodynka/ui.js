@@ -5,9 +5,9 @@ class Ui {
 
     AddHtml() {
         const localStorageKey = this.localStorageKey
-        console.log(notes);
-        //odczytanie tablicy notatek 
-        const notesFromStorage = JSON.parse(localStorage.getItem('notesApi'));
+            //odczytanie tablicy notatek 
+        const notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
+        console.log(notesFromStorage);
         notes = notesFromStorage.map(note => {
             note.createDate = new Date(note.createDate);
             return note;
@@ -80,7 +80,7 @@ class Ui {
 
                 elem.lastElementChild.classList.add('visible')
                 const i = notes.findIndex(note => note.city === this.firstChild.innerHTML)
-                console.log(i);
+
                 forecast.NewForecast(i)
                 document.querySelector('.tb').classList.add('visible')
             });
