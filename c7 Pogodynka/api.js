@@ -5,7 +5,7 @@ class Api {
         let openW;
         let addWeather;
         this.localStorageNoteKey = localStorageKey;
-        localStorage.setItem(this.localStorageNoteKey, JSON.stringify(notes));
+
     }
     ApiCity(findcity) {
 

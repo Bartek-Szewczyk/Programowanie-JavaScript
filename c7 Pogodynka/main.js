@@ -3,9 +3,6 @@ const api = new Api(localStorageKey);
 const ui = new Ui(localStorageKey);
 const forecast = new Forecast();
 
-ui.AddHtml();
-ui.Icon();
-
 const btn = document.querySelector('#findBtn')
 let findCity = document.querySelector('#city')
 btn.addEventListener('click', () => {
@@ -20,4 +17,15 @@ btnRef.addEventListener('click', () => {
 
 })
 
-setInterval(() => { api.Refresh() }, 120000)
+setInterval(() => { api.Refresh() }, 120000);
+
+function add() {
+    const notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
+    aNote = notesFromStorage
+    if (aNote != null) {
+
+        ui.AddHtml();
+        ui.Icon();
+    }
+}
+add();
