@@ -1,7 +1,13 @@
 document.body.addEventListener('keypress', onKeyPress)
 document.querySelector('#playbtn').addEventListener('click', playChannel);
+let recordStart;
+console.log(recordStart);
+document.querySelector('#recordbtn').addEventListener('click', () => {
+    recordStart = Date.now();
+})
 const channel = [];
-const recordStart = Date.now();
+
+
 
 
 function onKeyPress(ev) {
@@ -47,13 +53,16 @@ function onKeyPress(ev) {
             break;
     }
 
-    if (sound) {
+    if (sound && recordStart != undefined) {
         const keyPressTime = Date.now() - recordStart;
         const recordedSound = {
             sound: soundName,
             time: keyPressTime,
         }
         channel.push(recordedSound);
+        sound.play();
+        drum(soundName)
+    } else if (sound) {
         sound.play();
         drum(soundName)
     }
