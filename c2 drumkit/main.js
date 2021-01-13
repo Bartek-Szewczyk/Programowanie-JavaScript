@@ -28,7 +28,8 @@ document.querySelector('#playAllbtn').addEventListener('click', () => {
 })
 let recordStart;
 let recordStart2;
-console.log(recordStart);
+let recordStart3;
+let recordStart4;
 document.querySelector('#recordbtn').addEventListener('click', () => {
     recordStart = Date.now();
     rec = 1;
